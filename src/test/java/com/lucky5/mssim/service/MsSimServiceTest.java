@@ -52,9 +52,9 @@ public class MsSimServiceTest {
     @Test
     public void testGetApiResponse_NoResponsePresentAndApiDefaultResponsePresentShouldPass() throws Exception {
         final String actualJson = msSimService
-                .getApiResponse("ncdUnidStatusTest", "adsfafsadf");
+                .getApiResponse("myApi", "adsfafsadf");
         final String expectedJson =
-                Utilities.read("d:/development/ms-sim/src/main/resources/ncdUnidStatusTest/default.json");
+                Utilities.read("d:/development/ms-sim/src/main/resources/myApi/default.json");
 
         JSONAssert.assertEquals(expectedJson, actualJson, true);
     }
@@ -69,9 +69,9 @@ public class MsSimServiceTest {
     @Test
     public void testGetApiResponse_ResponsePresentShouldPass() throws Exception {
         final String actualJson = msSimService
-                .getApiResponse("ncdUnidStatusTest", "my-service-id");
+                .getApiResponse("myApi", "my-service-id");
         final String expectedJson =
-                Utilities.read("d:/development/ms-sim/src/main/resources/ncdUnidStatusTest/my-service-id.json");
+                Utilities.read("d:/development/ms-sim/src/main/resources/myApi/my-service-id.json");
 
         JSONAssert.assertEquals(expectedJson, actualJson, true);
     }

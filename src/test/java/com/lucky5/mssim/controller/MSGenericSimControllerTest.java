@@ -45,7 +45,7 @@ public class MSGenericSimControllerTest {
         Mockito.when(msSimService.getApiResponse(Mockito.anyString(), Mockito.anyString()))
                 .thenThrow(new IllegalArgumentException("no response configured"));
 
-        mockMvc.perform(post("/ms-sim/ncdUnidStatusTest")
+        mockMvc.perform(post("/ms-sim/myApi")
                 .content("{}")
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().is5xxServerError())
@@ -60,7 +60,7 @@ public class MSGenericSimControllerTest {
         Mockito.when(msSimService.getApiResponse(Mockito.anyString(), Mockito.anyString()))
                 .thenThrow(new IllegalArgumentException("no response configured"));
 
-        mockMvc.perform(post("/ms-sim/ncdUnidStatusTest1")
+        mockMvc.perform(post("/ms-sim/myApi1")
                 .content(requestJson)
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().is5xxServerError())
@@ -75,9 +75,9 @@ public class MSGenericSimControllerTest {
         // Assumed that service layer finds default file configured for the api and returns the content.
         Mockito.when(msSimService.getApiResponse(Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(Utilities
-                        .read("d:/development/ms-sim/src/main/resources/ncdUnidStatusTest/my-service-id.json"));
+                        .read("d:/development/ms-sim/src/main/resources/myApi/my-service-id.json"));
 
-        mockMvc.perform(post("/ms-sim/ncdUnidStatusTest")
+        mockMvc.perform(post("/ms-sim/myApi")
                 .content(requestJson)
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isCreated())
@@ -90,7 +90,7 @@ public class MSGenericSimControllerTest {
         Mockito.when(msSimService.getApiResponse(Mockito.anyString(), Mockito.anyString()))
                 .thenThrow(new IllegalArgumentException("no response configured"));
 
-        mockMvc.perform(get("/ms-sim/ncdUnidStatusTest/asdfasdf"))
+        mockMvc.perform(get("/ms-sim/myApi/asdfasdf"))
                 .andExpect(status().is5xxServerError())
                 .andDo(print());
     }
@@ -101,9 +101,9 @@ public class MSGenericSimControllerTest {
         // Assumed that service layer finds default file configured for the api and returns the content.
         Mockito.when(msSimService.getApiResponse(Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(Utilities
-                        .read("d:/development/ms-sim/src/main/resources/ncdUnidStatusTest/my-service-id.json"));
+                        .read("d:/development/ms-sim/src/main/resources/myApi/my-service-id.json"));
 
-        mockMvc.perform(get("/ms-sim/ncdUnidStatusTest/my-service-id"))
+        mockMvc.perform(get("/ms-sim/myApi/my-service-id"))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
